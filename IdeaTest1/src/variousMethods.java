@@ -26,8 +26,22 @@ public class variousMethods {
         }
         return (number == result);
     }
+    
+    private static int sumSquareDifference(int number){
+        number = Math.abs( number );
+        int sumSquare = 0;
+        int sum = 0;
+        for (int i = 1; i <= number; i++) {
+            sumSquare = sumSquare + i*i;
+            sum = sum + i;
+        }
+        sum = sum * sum;
+        int difference = sum - sumSquare;
+        return difference;
 
-    private static void main(String[] args) {
+    }
+
+    public static void main(String[] args) {
         System.out.println(diff(200, 0));
         System.out.println(isPerfect( 28 ));
         System.out.println(isPerfect( 6 ));
@@ -35,5 +49,9 @@ public class variousMethods {
         System.out.println(isPerfect( 8128 ));
         System.out.println(isPerfect( 4 ));
         System.out.println(isPerfect( 475467 ));
+
+        System.out.println(sumSquareDifference( 10 ));
+        System.out.println(sumSquareDifference( 5 ));
+        System.out.println(sumSquareDifference( -15 ));
     }
 }
