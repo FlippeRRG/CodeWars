@@ -14,7 +14,26 @@ public class variousMethods {
         }
     }
 
-    public static void main(String[] args) {
+    private static boolean isPerfect(int number){
+        if (number < 0){
+            return false;
+        }
+        int result = 0;
+        for (int i = 1; i < number/2 + 1; i++) {
+            if (number % i == 0 ){
+                result = result + i;
+            }
+        }
+        return (number == result);
+    }
+
+    private static void main(String[] args) {
         System.out.println(diff(200, 0));
+        System.out.println(isPerfect( 28 ));
+        System.out.println(isPerfect( 6 ));
+        System.out.println(isPerfect( 496 ));
+        System.out.println(isPerfect( 8128 ));
+        System.out.println(isPerfect( 4 ));
+        System.out.println(isPerfect( 475467 ));
     }
 }
