@@ -54,19 +54,36 @@ public class variousMethods {
         }
     }
 
+    private static int reverseInt (int enter){
+        Integer res = enter;
+        String temp = res.toString();
+        String result = "";
+        if (enter < 0) result = "-";
+        for (int i = temp.length()-1; i >= 0 ; i--) {
+            result = result + temp.charAt( i );
+        }
+        if (result.endsWith( "-" )) result = result.substring( 0, result.length()-1 );
+        Integer result1 = Integer.parseInt( result );
+        return result1;
+    }
+
+    public static String invertCase(String enterString){
+        char[] enter = enterString.toCharArray();
+        String ch;
+        String result = "";
+        for (int i = 0; i < enter.length; i++) {
+            ch = "" + enterString.charAt( i );
+            if (ch.equals( ch.toLowerCase() )) {
+                result = result + ch.toUpperCase();
+            } else {
+                result = result + ch.toLowerCase();
+            }
+        }
+        return result;
+    }
+
     public static void main(String[] args) {
-        System.out.println(diff(200, 0));
-        System.out.println(isPerfect( 28 ));
-        System.out.println(isPerfect( 6 ));
-        System.out.println(isPerfect( 496 ));
-        System.out.println(isPerfect( 8128 ));
-        System.out.println(isPerfect( 4 ));
-        System.out.println(isPerfect( 475467 ));
-
-        System.out.println(sumSquareDifference( 10 ));
-        System.out.println(sumSquareDifference( 5 ));
-        System.out.println(sumSquareDifference( -15 ));
-
-        fizzBuzz( 1, 100 );
+        System.out.println(reverseInt( -352 ));
+        System.out.println(invertCase( "QweAsdBbfefVwVWEvwefe!" ));
     }
 }
