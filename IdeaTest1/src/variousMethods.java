@@ -82,8 +82,24 @@ public class variousMethods {
         return result;
     }
 
+
+    public static String formattedTime (int minutesFromBeginningOfDay){
+        if (minutesFromBeginningOfDay < 0) return "0";
+        String result = "0";
+        int minutes = minutesFromBeginningOfDay % 60;
+        int hours = minutesFromBeginningOfDay / 60;
+        if (hours < 24 ){
+            result = String.format( "%02d.%02d", hours, minutes );
+        } else {
+            int days = hours / 24;
+            hours = hours % 24;
+            result = String.format( "%02d.%02d.%02d", days, hours, minutes );
+        }
+        return result;
+    }
+
     public static void main(String[] args) {
-        System.out.println(reverseInt( -352 ));
-        System.out.println(invertCase( "QweAsdBbfefVwVWEvwefe!" ));
+        System.out.println(formattedTime( 100000 ));
+
     }
 }
