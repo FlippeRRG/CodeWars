@@ -98,8 +98,27 @@ public class variousMethods {
         return result;
     }
 
-    public static void main(String[] args) {
-        System.out.println(formattedTime( 100000 ));
+    public static boolean isHappyTicket(int number){
+        if (number > 999999 || number < 100000) return false;
+        int firstPart = number / 1000;
+        int secondPart = number % 1000;
+        if (firstPart == secondPart) return true;
+        int sumFP = 0;
+        int sumSP = 0;
+        for (int i = 0; i < 3; i++) {
+            sumFP = sumFP + (firstPart % 10);
+            firstPart = firstPart / 10;
+            sumSP = sumSP + (secondPart % 10);
+            secondPart = secondPart / 10;;
+        }
 
+        return (sumFP == sumSP);
+    }
+
+    public static void main(String[] args) {
+        System.out.println(isHappyTicket( 385916 ));
+        System.out.println(isHappyTicket( 123321 ));
+        System.out.println(isHappyTicket( 145334 ));
+        System.out.println(isHappyTicket( 951555 ));
     }
 }
