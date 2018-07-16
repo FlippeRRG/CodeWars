@@ -23,8 +23,24 @@ public class CodeWars {
             return result;
         }
 
+        public static String toCamelCase(String s){
+            StringBuilder result = new StringBuilder(  );
+            char[] inputStr = s.toCharArray();
+            for (int i = 0; i < inputStr.length; i++) {
+                if (inputStr[i] == '_' || inputStr[i] == '-'){
+                    String ch = String.valueOf( inputStr[i+1] );
+                    ch = ch.toUpperCase();
+                    result = result.append( ch );
+                    i++;
+                } else {
+                    result = result.append( inputStr[i] );
+                }
+            }
+            return result.toString();
+        }
+
 
     public static void main(String[] args) {
-        System.out.println(maskify( "wqeqwewq eq eqwBatman" ));
+        System.out.println(toCamelCase( "river_side" ));
     }
 }
