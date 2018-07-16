@@ -114,7 +114,40 @@ public class variousMethods {
         return (sumFP == sumSP);
     }
 
-    public static void main(String[] args) {
+//    Назовем счастливыми числами те, которые в результате ряда преобразований вида "сумма квадратов цифр" превратятся в единицу. Например:
+////
+////            7   => 7^2 = 49,
+////            49  => 4^2 + 9^2 = 16 + 81 = 97,
+////            97  => 9^2 + 7^2 = 81 + 49 = 130,
+////            130 => 1^2 + 3^2 + 0^2 = 10,
+////            10  => 1^2 + 0^2 = 1.
+////    Вывод: исходное число 7 - счастливое.
 
+    public static boolean isHappyNumber (int input){
+        int result = sumOfSquareDigits( input );
+        for (int i = 0; i < 10; i++) {
+
+            if (result == 1){
+                return true;
+            } else {
+                result = sumOfSquareDigits( result );
+
+            }
+        }
+        return false;
+    }
+
+    private static int sumOfSquareDigits (int input){
+        int result = 0;
+        while (input >= 10){
+            int temp = input % 10;
+            result = result + (temp * temp);
+            input = input / 10;
+        }
+        return result + (input * input);
+    }
+
+    public static void main(String[] args) {
+        System.out.println(isHappyNumber( 7 ));
     }
 }
