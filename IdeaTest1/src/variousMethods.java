@@ -111,14 +111,10 @@ public class variousMethods {
             sumSP = sumSP + (secondPart % 10);
             secondPart = secondPart / 10;;
         }
-
         return (sumFP == sumSP);
     }
 
     public static void main(String[] args) {
-        System.out.println(isHappyTicket( 385916 ));
-        System.out.println(isHappyTicket( 123321 ));
-        System.out.println(isHappyTicket( 145334 ));
-        System.out.println(isHappyTicket( 951555 ));
+
     }
 }
