@@ -10,6 +10,7 @@ public class variousMethods {
                 return 360 - diff;
             }
         } else {
+
             return 0;
         }
     }
@@ -148,6 +149,10 @@ public class variousMethods {
     }
 
     public static void main(String[] args) {
-        System.out.println(isHappyNumber( 7 ));
-    }
+        Strings test = new Strings();
+//        System.out.println(test.task1( "input" ));
+        System.out.println( test.task2( "input string to the method test2" ));
+        System.out.println(test.task3( "input string to the method test2", 't' ));
+
+        }
 }
