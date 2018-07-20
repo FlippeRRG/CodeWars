@@ -59,4 +59,16 @@ public class Strings {
             return result;
         // END
     }
+
+    public int fromString(final char[] chars) {
+        if(chars.length==0) return 0;
+        if (chars.equals( null )) return 0;
+        StringBuilder res = new StringBuilder();
+        for (int i = 0; i < 3; i++) {
+            res.append( chars[i] );
+
+        }
+        int result = Integer.parseInt( String.valueOf( res ) );
+        return result;
+    }
 }

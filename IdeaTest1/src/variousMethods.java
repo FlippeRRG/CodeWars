@@ -71,6 +71,7 @@ public class variousMethods {
     public static String invertCase(String enterString){
         char[] enter = enterString.toCharArray();
         String ch;
+
         String result = "";
         for (int i = 0; i < enter.length; i++) {
             ch = "" + enterString.charAt( i );
