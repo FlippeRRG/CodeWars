@@ -70,7 +70,26 @@ public class CodeWars {
             return result;
         }
 
+    public static int century(int number) {
+        int result = number / 100;
+        if(number % 100 > 0 || number < 100) result++;
+        return result;
+    }
 
+   //    Return the number (count) of vowels in the given string.
+//////
+//////    We will consider a, e, i, o, and u as vowels for this Kata.
+//////
+//////    The input string will only consist of lower case letters and/or spaces.
+
+    public static int getCount(String str) {
+        int vowelsCount = 0;
+       char[] inputStr = str.toCharArray();
+        for (int i = 0; i <inputStr.length; i++) {
+            if (inputStr[i]=='a' || inputStr[i]=='e' || inputStr[i]=='i' || inputStr[i]=='o' || inputStr[i]=='u') vowelsCount++;
+        }
+        return vowelsCount;
+    }
     public static void main(String[] args) {
         System.out.println(toCamelCase( "river_side" ));
 
