@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Strings {
     /** invert the string
      * 	example:
@@ -14,6 +17,7 @@ public class Strings {
             j++;
         }
         String out = String.copyValueOf( result );
+        List<String> result12 = new ArrayList<String>();
         return out;
         // END
     }
@@ -71,4 +75,6 @@ public class Strings {
         int result = Integer.parseInt( String.valueOf( res ) );
         return result;
     }
+
+
 }

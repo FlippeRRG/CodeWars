@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.List;
 
 public class CodeWars {
@@ -90,8 +91,89 @@ public class CodeWars {
         }
         return vowelsCount;
     }
-    public static void main(String[] args) {
-        System.out.println(toCamelCase( "river_side" ));
 
+    public static String insertMissingLetters(String str) {
+        // Your code here
+        char[] m = new char[26];
+        for (int i=0; i< 26; i++) {
+            m[i] = (char)('A' + i);
+        }
+        int count = 0;
+        String alphaBet = String.copyValueOf( m );
+        String alphaBetLC = alphaBet.toLowerCase();
+        char[]input = str.toCharArray();
+        StringBuilder result = new StringBuilder(  );
+        for (int i = 0; i < str.length(); i++) {
+            result.append( input[i] );
+
+                if (input[i-count]==input[i] && i > 0){
+
+                } else {
+                    for (int j = 0; j < alphaBet.length(); j++) {
+                        if (input[i] == alphaBetLC.charAt( j )){
+                            String alphaBetToSubstring = alphaBet.substring( j+1 );
+                            alphaBetToSubstring = alphaBetToSubstring.toLowerCase();
+                            for (int k = 0; k < str.length(); k++) {
+                                int index = alphaBetToSubstring.indexOf( str.charAt( k ) );
+                                if (index < 0) {
+
+                                } else {
+
+                                    alphaBetToSubstring = alphaBetToSubstring.substring( 0, index ) + alphaBetToSubstring.substring(index+1);
+                                }
+                            }
+                            count = 1;
+                            result.append(alphaBetToSubstring.toUpperCase());
+                        }
+                    }
+                }
+            }
+
+        return String.valueOf( result );
+    }
+
+    public static boolean casino(){
+            double start1 = 93.7;
+        for (int i = 0; i < 700; i++) {
+            double start = start1;
+            while(start > 0){
+                start = (start * 2) - 100;
+            }
+            System.out.println(start);
+            if(start==0) {
+                System.out.println(start1);
+                return true;
+            } else {
+                start1 = start1 + 0.01;
+            }
+        }
+        System.out.println("Хрен там был!");
+        return false;
+    }
+
+    private static void arrDivision(int[]arr){
+            int sum = 0;
+        for (int i : arr) {
+            sum += i;
+        }
+        if (sum % 2 == 0){
+            int check = 0;
+            for (int i = 0; i < arr.length; i++) {
+                check += arr[i];
+                if (sum / 2 == check) {
+                    System.out.println( Arrays.toString( Arrays.copyOfRange( arr, 0, i+1 ) ) + " | | "
+                            + Arrays.toString( Arrays.copyOfRange( arr, i+1, arr.length ) ) );
+                    break;
+                }
+            }
+            System.out.println("Нет места делящего массив пополам!");
+        } else {
+            System.out.println("Нет места делящего массив пополам!");
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {1,2,3,4,5,6,7,8,9,9,0,12,1,1,1,1};
+        arrDivision( arr );
     }
 }
