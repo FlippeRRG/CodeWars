@@ -172,8 +172,29 @@ public class CodeWars {
         }
     }
 
+        public static String repeatStr(final int repeat, final String string) {
+            String result = "";
+            for (int i = 0; i < repeat; i++) {
+                result += string;
+            }
+            return result;
+        }
+    public static int[] sortArray(int[] array) {
+        for (int i = 0; i < array.length ; i++) {
+            for (int j = 0; j < array.length ; j++) {
+                if(array[i] < array[j] && array[i] % 2 !=0 && array[j] % 2 !=0){
+                    int temp = array[i];
+                    array[i] = array[j];
+                    array[j] = temp;
+                }
+            }
+        }
+        System.out.println(Arrays.toString( array ));
+        return array;
+    }
+
+
     public static void main(String[] args) {
-        int[] arr = {1,2,3,4,5,6,7,8,9,9,0,12,1,1,1,1};
-        arrDivision( arr );
+        sortArray( new int[]{ 5, 3, 2, 0, 1, 4 } );
     }
 }
