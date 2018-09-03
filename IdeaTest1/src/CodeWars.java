@@ -186,15 +186,36 @@ public class CodeWars {
                     int temp = array[i];
                     array[i] = array[j];
                     array[j] = temp;
+                    int a = 0;
+                    int b = 0;
+
                 }
             }
         }
-        System.out.println(Arrays.toString( array ));
         return array;
+    }
+    public static int sequence(int[] arr) {
+        int result = 0;
+        int temp;
+
+        for (int i = 0; i < arr.length; i++) {
+            if(arr[i] > result) result = arr[i];
+        }
+
+        for (int i = 0; i < arr.length; i++) {
+            temp = 0;
+            for (int j = i; j < arr.length; j++) {
+                temp += arr[j];
+                if(temp > result){
+                    result = temp;
+                }
+            }
+        }
+        return result;
     }
 
 
     public static void main(String[] args) {
-        sortArray( new int[]{ 5, 3, 2, 0, 1, 4 } );
+        sequence( new int[]{-2, 1, -3, 4, -1, 2, 1, -5, 4} );
     }
 }
