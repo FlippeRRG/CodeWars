@@ -213,9 +213,37 @@ public class CodeWars {
         }
         return result;
     }
+//    If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23.
+//    Finish the solution so that it returns the sum of all the multiples of 3 or 5 below the number passed in.
+    public static int solution(int number) {
+            int result = 0;
+        for (int i = 3; i < number; i++) {
+            if (i % 3 ==0 || i % 5 == 0) result +=i;
+        }
+        return result;
+    }
 
+//    Your task is to sort a given string. Each word in the String will contain a single number. This number is the position the word should have in the result.
+//
+//    Note: Numbers can be from 1 to 9. So 1 will be the first word (not 0).
+//
+//    If the input String is empty, return an empty String. The words in the input String will only contain valid consecutive numbers.
+//
+//    For an input: "is2 Thi1s T4est 3a" the function should return "Thi1s is2 3a T4est"
+    public static String order(String words) {
+        String []wordArr = words.split( " " );
+        StringBuilder result = new StringBuilder( "" );
+        for (int i = 0; i < 10; i++) {
+            for (String t : wordArr) {
+                if(t.contains(  String.valueOf( i ) )) result.append( t ).append( " " );
+            }
+        }
 
+        return new String(result).trim();
+    }
     public static void main(String[] args) {
-        sequence( new int[]{-2, 1, -3, 4, -1, 2, 1, -5, 4} );
+
+        System.out.println(order( "is2 Thi1s T4est 3a" ));
+
     }
 }
