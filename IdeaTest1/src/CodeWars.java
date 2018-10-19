@@ -1,3 +1,5 @@
+
+import java.math.BigInteger;
 import java.util.*;
 
 public class CodeWars {
@@ -353,13 +355,13 @@ public class CodeWars {
 // for strings. All words must have their first letter capitalized without spaces.
 
     public static String camelCase(String str) {
-        if("".equals( str )) return "";
+        if ("".equals( str )) return "";
         str = str.trim();
         String[] arr = str.split( " " );
         String result = "";
         for (int i = 0; i < arr.length; i++) {
             String s = arr[i];
-            if(!"".equals( s )){
+            if (!"".equals( s )) {
                 s = s.substring( 0, 1 ).toUpperCase() + s.substring( 1 );
                 result += s;
             }
@@ -367,10 +369,114 @@ public class CodeWars {
         return result;
     }
 
+    public static String factors(int n) {
+        BigInteger bi = BigInteger.valueOf( 0 );
+        ArrayList<Integer> arrPerfect = new ArrayList<>();
+        arrPerfect.add( 2 );
+        for (int i = 3; i < 1000; i += 2) {
+            boolean isPrime = true;
+            for (int j = 2; j < i / 2 + 1; j++) {
+                if (i % j == 0) {
+                    isPrime = false;
+                }
+            }
+            if (isPrime) {
+                arrPerfect.add( i );
+//                System.out.println( i );
+            }
+        }
+//        System.out.println( arrPerfect );
+        int[] arr = new int[25];
+        int arrCounter = 0;
+        int arrPerfectCounter = 0;
+        while (n > 1) {
+            int a = arrPerfect.get( arrPerfectCounter );
+            arrPerfectCounter++;
+            if (n % a == 0) {
+                arr[arrCounter++] = a;
+                n = n / a;
+                bi = BigInteger.valueOf( n );
+
+                arrPerfectCounter = 0;
+            }
+            if (bi.isProbablePrime( n ) && n > 1000) {
+                arr[arrCounter] = n;
+                arrPerfect.add( n );
+                System.out.println(arr[arrCounter]);
+//                System.out.println(Arrays.toString( arr ));
+                n = 1;
+            }
+
+        }
+        StringBuilder res = new StringBuilder();
+        for (int i = 0; i < arrPerfect.size(); i++) {
+            int prime = arrPerfect.get( i );
+            int counter = 0;
+            for (int j = 0; j < arr.length; j++) {
+                if (prime == arr[j]) {
+                    counter++;
+                }
+            }
+            if (counter > 1) {
+                res.append( "(" + prime + "**" + counter + ")" );
+            } else if (counter == 1) {
+                res.append( "(" + prime + ")" );
+            }
+        }
+        System.out.println(String.valueOf( res ));
+        return String.valueOf( res );
+    }
+
+    public static String encrypt(final String text, final int n) {
+        if("".equals( text )) return "";
+        if(text== null ) return null;
+        char[] arr = text.toCharArray();
+        StringBuilder firstPartOfString = new StringBuilder(  );
+        StringBuilder secondPartOfString = new StringBuilder(  );
+        for (int j = 0; j < n; j++) {
+            for (int i = 0; i < arr.length; i+=2) {
+                secondPartOfString.append( arr[i] );
+                if(i<arr.length-1) firstPartOfString.append( arr[i+1] );
+            }
+            firstPartOfString.append( secondPartOfString );
+            String res = String.valueOf( firstPartOfString);
+            arr = res.toCharArray();
+            firstPartOfString.delete( 0,firstPartOfString.length() );
+            secondPartOfString.delete( 0, secondPartOfString.length() );
+        }
+
+//        System.out.println(String.valueOf( arr));
+
+        return String.valueOf( arr);
+    }
+
+    public static String decrypt(final String encryptedText, final int n) {
+        if("".equals( encryptedText )) return "";
+        if(encryptedText == null) return null;
+        if(n==0) return encryptedText;
+        StringBuilder firstPart = new StringBuilder( encryptedText.substring( 0, encryptedText.length() / 2 ) );
+        StringBuilder secondPart = new StringBuilder( encryptedText.substring( encryptedText.length() / 2));
+        StringBuilder res = new StringBuilder(  );
+        for (int i = 0; i < n; i++) {
+            res.setLength( 0 );
+            for (int j = 0; j < secondPart.length(); j++) {
+                res.append( secondPart.charAt( j ) );
+                if(j<firstPart.length())res.append( firstPart.charAt( j ) );
+            }
+            firstPart.delete( 0,firstPart.length() );
+            firstPart.append(res.substring( 0, res.length() / 2 ));
+            secondPart.delete( 0,secondPart.length() );
+            secondPart.append(res.substring( res.length() / 2 ));
+
+        }
+//        System.out.println(res);
+        return String.valueOf( res );
+    }
+
 
     public static void main(String[] args) {
-
-        System.out.println(camelCase( "ab  c" ));
-
+        encrypt( null, 0 );
+        decrypt( "This is a test!", 0);
     }
 }
+
