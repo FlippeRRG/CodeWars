@@ -402,7 +402,7 @@ public class CodeWars {
             if (bi.isProbablePrime( n ) && n > 1000) {
                 arr[arrCounter] = n;
                 arrPerfect.add( n );
-                System.out.println(arr[arrCounter]);
+                System.out.println( arr[arrCounter] );
 //                System.out.println(Arrays.toString( arr ));
                 n = 1;
             }
@@ -423,60 +423,121 @@ public class CodeWars {
                 res.append( "(" + prime + ")" );
             }
         }
-        System.out.println(String.valueOf( res ));
+        System.out.println( String.valueOf( res ) );
         return String.valueOf( res );
     }
 
     public static String encrypt(final String text, final int n) {
-        if("".equals( text )) return "";
-        if(text== null ) return null;
+        if ("".equals( text )) return "";
+        if (text == null) return null;
         char[] arr = text.toCharArray();
-        StringBuilder firstPartOfString = new StringBuilder(  );
-        StringBuilder secondPartOfString = new StringBuilder(  );
+        StringBuilder firstPartOfString = new StringBuilder();
+        StringBuilder secondPartOfString = new StringBuilder();
         for (int j = 0; j < n; j++) {
-            for (int i = 0; i < arr.length; i+=2) {
+            for (int i = 0; i < arr.length; i += 2) {
                 secondPartOfString.append( arr[i] );
-                if(i<arr.length-1) firstPartOfString.append( arr[i+1] );
+                if (i < arr.length - 1) firstPartOfString.append( arr[i + 1] );
             }
             firstPartOfString.append( secondPartOfString );
-            String res = String.valueOf( firstPartOfString);
+            String res = String.valueOf( firstPartOfString );
             arr = res.toCharArray();
-            firstPartOfString.delete( 0,firstPartOfString.length() );
+            firstPartOfString.delete( 0, firstPartOfString.length() );
             secondPartOfString.delete( 0, secondPartOfString.length() );
         }
 
 //        System.out.println(String.valueOf( arr));
 
-        return String.valueOf( arr);
+        return String.valueOf( arr );
     }
 
     public static String decrypt(final String encryptedText, final int n) {
-        if("".equals( encryptedText )) return "";
-        if(encryptedText == null) return null;
-        if(n==0) return encryptedText;
+        if ("".equals( encryptedText )) return "";
+        if (encryptedText == null) return null;
+        if (n == 0) return encryptedText;
         StringBuilder firstPart = new StringBuilder( encryptedText.substring( 0, encryptedText.length() / 2 ) );
-        StringBuilder secondPart = new StringBuilder( encryptedText.substring( encryptedText.length() / 2));
-        StringBuilder res = new StringBuilder(  );
+        StringBuilder secondPart = new StringBuilder( encryptedText.substring( encryptedText.length() / 2 ) );
+        StringBuilder res = new StringBuilder();
         for (int i = 0; i < n; i++) {
             res.setLength( 0 );
             for (int j = 0; j < secondPart.length(); j++) {
                 res.append( secondPart.charAt( j ) );
-                if(j<firstPart.length())res.append( firstPart.charAt( j ) );
+                if (j < firstPart.length()) res.append( firstPart.charAt( j ) );
             }
-            firstPart.delete( 0,firstPart.length() );
-            firstPart.append(res.substring( 0, res.length() / 2 ));
-            secondPart.delete( 0,secondPart.length() );
-            secondPart.append(res.substring( res.length() / 2 ));
+            firstPart.delete( 0, firstPart.length() );
+            firstPart.append( res.substring( 0, res.length() / 2 ) );
+            secondPart.delete( 0, secondPart.length() );
+            secondPart.append( res.substring( res.length() / 2 ) );
 
         }
-//        System.out.println(res);
         return String.valueOf( res );
     }
 
+//    Your task is to sort a given string. Each word in the String will contain a single number.
+//    This number is the position the word should have in the result.//
+//    Note: Numbers can be from 1 to 9. So 1 will be the first word (not 0).//
+//    If the input String is empty, return an empty String.
+//    The words in the input String will only contain valid consecutive numbers.//
+//    For an input: "is2 Thi1s T4est 3a" the function should return "Thi1s is2 3a T4est"
+
+
+    public static String order1(String words) {
+        if (words.equals( "" )) return words;
+        words = words.trim();
+        String[] wordsArray = words.split( " " );
+        StringBuilder result = new StringBuilder();
+        for (int i = 1; i < wordsArray.length + 1; i++) {
+            for (String s : wordsArray) {
+                if (s.contains( String.valueOf( i ) )) {
+                    result.append( s );
+                    result.append( " " );
+                }
+            }
+        }
+        String res = String.valueOf( result ).trim();
+        return res;
+    }
+
+
+//    Given a string of words, you need to find the highest scoring word.
+//
+//    Each letter of a word scores points according to it's position in the alphabet: a = 1, b = 2, c = 3 etc.
+//
+//    You need to return the highest scoring word as a string.
+//
+//    If two words score the same, return the word that appears earliest in the original string.
+//
+//    All letters will be lowercase and all inputs will be valid.
+
+    public static String high(String s) {
+        String[] wordsArray = s.split( " " );
+        HashMap<Character, Integer> alphabet = new HashMap<>(  );
+        HashMap<String, Integer> wordsSum = new HashMap<>(  );
+        Integer val = 1;
+        for(char c = 'a'; c <= 'z'; ++c) {
+            alphabet.put( c, val++ );
+        }
+        for (int i = 0; i < wordsArray.length; i++) {
+            for(String w: wordsArray){
+                Integer sum = 0;
+                for (int j = 0; j < w.length(); j++) {
+                    sum += alphabet.get( w.charAt( j ) );
+                }
+                wordsSum.put( w, sum );
+            }
+        }
+        int max = 0;
+        String result = "";
+        for(String key: wordsSum.keySet()){
+            if(wordsSum.get( key )>max){
+                max = wordsSum.get( key );
+                result = key;
+            }
+        }
+        return result;
+    }
 
     public static void main(String[] args) {
-        encrypt( null, 0 );
-        decrypt( "This is a test!", 0);
+        high( ("take me to semynak" ));
     }
 }
 
