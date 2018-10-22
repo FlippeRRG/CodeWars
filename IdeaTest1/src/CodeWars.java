@@ -537,7 +537,10 @@ public class CodeWars {
     }
 
     public static void main(String[] args) {
-        high( ("take me to semynak" ));
+        HackerRank hr = new HackerRank();
+
+        int[] arr = {0,0,1,0,0,1,0};
+        System.out.println(hr.jumpingOnClouds( arr ));
     }
 }
 
